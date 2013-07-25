@@ -140,7 +140,11 @@
                         term.write('\r');
                     },
                     onClose: function() {
-                        term.write('Connection Reset By Peer');
+                        term.destroy();
+                        $('#term').empty();
+
+                        $('#ssh').hide();
+                        $('#connect').show();
                     },
                     onData: function(data) {
                         term.write(data);
