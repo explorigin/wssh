@@ -11,13 +11,13 @@
     <body>
         <div class="navbar navbar-fixed-top">
             <div class="navbar-inner">
-                <div class="container">
+                <div class="container-fluid">
                     <a class="brand" href="#">wssh</a>
                 </div>
             </div>
         </div>
 
-        <div class="container">
+        <div class="container-fluid">
             <!-- Connection form -->
 
             <form id="connect" class="form-horizontal">
@@ -112,10 +112,6 @@
 
                 </fieldset>
             </form>
-
-            <div id="term">
-            </div>
-
         </div>
 
         <script type="application/javascript" src="{{url_for('static', filename='jquery.js')}}"></script>
@@ -124,12 +120,10 @@
         <script type="application/javascript">
             function openTerminal(options) {
                 var client = new WSSHClient();
-                var term = new Terminal(80, 24, function(key) {
+                var term = new Terminal(120, 35, function(key) {
                     client.send(key);
                 });
                 term.open();
-                $('.terminal').detach().appendTo('#term');
-                term.resize(80, 24);
                 term.write('Connecting...');
                 client.connect($.extend(options, {
                     onError: function(error) {
@@ -140,8 +134,8 @@
                         term.write('\r');
                     },
                     onClose: function() {
+                        $(term.element).remove();
                         term.destroy();
-                        $('#term').empty();
 
                         $('#ssh').hide();
                         $('#connect').show();
