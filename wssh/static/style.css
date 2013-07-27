@@ -15,3 +15,9 @@ body {
     background: #000;
     line-height: normal;
 }
+
+/* For the cursor */
+.reverse-video {
+	color: #000;
+	background-color: #f0f0f0;
+}
