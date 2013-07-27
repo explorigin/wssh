@@ -14,6 +14,7 @@ body {
     color: #f0f0f0;
     background: #000;
     line-height: normal;
+    white-space: pre;
 }
 
 /* For the cursor */
